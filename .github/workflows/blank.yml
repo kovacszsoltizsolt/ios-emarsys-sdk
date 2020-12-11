@@ -1,33 +1,31 @@
-# This is a basic workflow to help you get started with Actions
+name: Test it out
 
-name: CI
-
-# Controls when the action will run. 
 on:
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+#  push:
+#    branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+#  RELEASE_KEY_PASSWORD:  ${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
+#  RELEASE_KEY_ALIAS:  ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+#  RELEASE_STORE_PASSWORD:  ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+#  RELEASE_STORE_FILE: ${{ secrets.RELEASE_STORE_FILE }}
+#  DEVELOPMENT_MODE: ${{ secrets.DEVELOPMENT_MODE }}
+#  GOOGLE_SERVICES_API_KEY: ${{ secrets.GOOGLE_SERVICES_API_KEY }}
+#  SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+#  SLACK_ICON: https://icons.iconarchive.com/icons/martz90/circle/256/android-icon.png
+#  SLACK_TITLE: Commit status
+#  SLACK_USERNAME: Emarsys SDK - Android
+#  SLACK_WEBHOOK: ${{ secrets.SLACK_MOBILE_TEAM_CI_CHANNEL_WEBHOOK }}
+
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  Build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    name: Build job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - uses: actions/checkout@v2.3.1
+        with:
+          submodules: true
+          fetch-depth: 0 # 0 indicates all history
+      - run: git fetch --all || echo "==> Accept any result"
