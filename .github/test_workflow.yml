@@ -1,0 +1,31 @@
+name: Test it out
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [ master ]
+
+env:
+#  RELEASE_KEY_PASSWORD:  ${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
+#  RELEASE_KEY_ALIAS:  ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+#  RELEASE_STORE_PASSWORD:  ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+#  RELEASE_STORE_FILE: ${{ secrets.RELEASE_STORE_FILE }}
+#  DEVELOPMENT_MODE: ${{ secrets.DEVELOPMENT_MODE }}
+#  GOOGLE_SERVICES_API_KEY: ${{ secrets.GOOGLE_SERVICES_API_KEY }}
+#  SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+#  SLACK_ICON: https://icons.iconarchive.com/icons/martz90/circle/256/android-icon.png
+#  SLACK_TITLE: Commit status
+#  SLACK_USERNAME: Emarsys SDK - Android
+#  SLACK_WEBHOOK: ${{ secrets.SLACK_MOBILE_TEAM_CI_CHANNEL_WEBHOOK }}
+
+jobs:
+  Build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    name: Build job
+    steps:
+      - uses: actions/checkout@v2.3.1
+        with:
+          submodules: true
+          fetch-depth: 0 # 0 indicates all history
+      - run: git fetch --all || echo "==> Accept any result"
